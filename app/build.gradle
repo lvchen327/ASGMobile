@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion "25.0.2"
+    aaptOptions{
+        cruncherEnabled=false;
+        useNewCruncher=false;
+    }
+
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.handict.superapp_mobile"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.1004"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        flatDir { dirs 'libs' }
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/classes.jar')
+    compile(name: 'AlivcPlayer', ext: 'aar')
+    compile(name: 'AliyunVodPlayer', ext: 'aar')
+    compile(name: 'AliyunVodPlayerView', ext: 'aar')
+    compile(name: 'AlivcReporter', ext: 'aar')
+    compile files('libs/umeng-analytics-v6.1.0.jar')
+    compile files('libs/utdid4all-1.0.4.jar')
+    compile files('libs/libammsdk.jar')
+    compile files('libs/okhttp-3.6.0.jar')
+    compile files('libs/okio-1.11.0.jar')
+    /*compile files('libs/httpclient-4.5.jar')
+            compile files('libs/httpcore-4.4.1.jar')*/
+    //compile files('libs/multidex.jar')
+    //compile files('libs/support-v4-25.3.1.jar')
+}
+
+
