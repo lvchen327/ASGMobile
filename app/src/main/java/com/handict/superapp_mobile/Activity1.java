@@ -17,5 +17,6 @@ public class Activity1 extends Activity {
 //        Log.d("1111", "StartActivity1: ----->  2");
 //        textView.setText(getIntent().getStringExtra("text"));
 //        Log.d("1111", "StartActivity1: ----->  3");
+        // TODO: 2018/2/24  
     }
 }
