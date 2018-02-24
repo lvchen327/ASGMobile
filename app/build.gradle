@@ -1,12 +1,21 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'com.android.library'
 
 android {
-
+    // productFlavors是为了避免每次运行都把DEX重新加载一遍而设置的两套运行配置
+    productFlavors {
+        dev {
+            minSdkVersion 21
+        }
+        prod {
+            minSdkVersion 14
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "25.0.2"
-    aaptOptions{
-        cruncherEnabled=false;
-        useNewCruncher=false;
+    aaptOptions {
+        cruncherEnabled = false;
+        useNewCruncher = false;
     }
 
     useLibrary 'org.apache.http.legacy'
@@ -21,10 +30,25 @@ android {
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
+        multiDexEnabled=true
+//        multiDexEnabled=false
+
     }
 
+    dexOptions{
+        javaMaxHeapSize "2g"
+    }
+    signingConfigs {
+        debug {
+            storeFile file('supAppMobile.keystore')
+            storePassword "handictsuperapp"
+            keyAlias "handict"
+            keyPassword "handictsuperapp"
+        }
 
+    }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -33,6 +57,11 @@ android {
     repositories {
         flatDir { dirs 'libs' }
     }
+    /*dexOptions {
+        preDexLibraries = false
+        //incremental true
+        javaMaxHeapSize "4g"
+    }*/
 }
 
 
@@ -41,23 +70,37 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
     compile files('libs/classes.jar')
     compile(name: 'AlivcPlayer', ext: 'aar')
     compile(name: 'AliyunVodPlayer', ext: 'aar')
     compile(name: 'AliyunVodPlayerView', ext: 'aar')
     compile(name: 'AlivcReporter', ext: 'aar')
-    compile files('libs/umeng-analytics-v6.1.0.jar')
-    compile files('libs/utdid4all-1.0.4.jar')
-    compile files('libs/libammsdk.jar')
+    //    compile files('libs/umeng-analytics-v6.1.0.jar')
     compile files('libs/okhttp-3.6.0.jar')
     compile files('libs/okio-1.11.0.jar')
     /*compile files('libs/httpclient-4.5.jar')
-            compile files('libs/httpcore-4.4.1.jar')*/
+                                        compile files('libs/httpcore-4.4.1.jar')*/
     //compile files('libs/multidex.jar')
     //compile files('libs/support-v4-25.3.1.jar')
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    //    compile files('libs/alipaySdk-20170922.jar')
+    //    compile 'com.android.support:multidex:1.0.1'
+    compile files('libs/multidex.jar')
+    compile files('libs/umeng-analytics-v6.1.0.jar')
+    compile files('libs/alipaySdk-20170922.jar')
+    compile files('libs/analytics-7.4.1.jar')
+    compile files('libs/common-1.4.1.jar')
+    compile files('libs/libammsdk.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/utdid4all-1.0.4.jar')
 }
+
 
 

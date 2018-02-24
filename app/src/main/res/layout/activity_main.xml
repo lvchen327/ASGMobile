@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,24 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn1"
+        android:text="1"
         android:layout_width="128dp"
         android:layout_height="152dp"
         android:layout_gravity="center"
         android:onClick="onClick" />
-</FrameLayout>
+    <Button
+        android:id="@+id/btn2"
+        android:text="2"
+        android:layout_width="128dp"
+        android:layout_height="152dp"
+        android:layout_gravity="center"
+        android:onClick="onClick" />
+    <Button
+        android:id="@+id/btn3"
+        android:text="3"
+        android:layout_width="128dp"
+        android:layout_height="152dp"
+        android:layout_gravity="center"
+        android:onClick="onClick" />
+</LinearLayout>

@@ -1,63 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.handict.superapp_mobile">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    package="com.handict.superapp_mobile"> <!-- 友盟统计 -->
+    <uses-sdk android:minSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--友盟统计-->
-    <uses-sdk android:minSdkVersion="16"></uses-sdk>
+
     <application
+        android:name=".MyApplication"
         android:icon="@mipmap/icon"
         android:label="爱手工"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-        >
-        <activity android:name=".MainActivity"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity
+            android:name=".MainActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
-            android:screenOrientation="portrait" >
-
-
-        </activity>
-        <activity android:name=".Activity1"/>
-        <activity android:name=".SkinActivity"
-            android:configChanges="orientation|keyboard|locale|screenSize|layoutDirection"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--Unity-->
-        <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
-        <!--友盟统计-->
-        <meta-data android:value="59e8062ab27b0a2ac70002bf" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
-        <!--微信支付-->
+        <activity android:name=".Activity1" />
         <activity
-            android:name=".wxapi.WXPayEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop"/>
+            android:name=".SkinActivity"
+            android:configChanges="orientation|keyboard|locale|screenSize|layoutDirection">
 
-        <activity
-            android:name="com.handict.superapp_mobile.wx.ShowFromWXActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MMTheme.Basic"/>
+        </activity>
+        <!-- Unity -->
+        <meta-data
+            android:name="unityplayer.UnityActivity"
+            android:value="true" />
+        <!-- 友盟统计 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59e8062ab27b0a2ac70002bf" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
 
-        <activity
-            android:name="com.handict.superapp_mobile.wx.PayActivity"
-            android:label="@string/app_name"
-            android:theme="@style/MMTheme.Basic"/>
-
-        <receiver
-            android:name="com.handict.superapp_mobile.wx.AppRegister">
-            <intent-filter>
-                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
-            </intent-filter>
-        </receiver>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -66,8 +52,22 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
+        <activity
+            android:name=".test.TestActivity"
+            android:label="@string/title_activity_test">
+
+        </activity>
+
+        <activity
+            android:name="com.handict.superapp_mobile.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
 
     </application>
 

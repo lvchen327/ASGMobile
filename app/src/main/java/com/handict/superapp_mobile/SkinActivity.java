@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -249,6 +250,7 @@ public class SkinActivity extends Activity {
 //        int indext=this.getIntent().getStringExtra("videourl").indexOf("*objname*");
             int indext=str.indexOf("*showscanbtn*");
             videoUrl=str.substring(4,indext);
+            Log.i("cccccz", "videoUrl: "+videoUrl);
 //        unityObjName=this.getIntent().getStringExtra("videourl").substring(indext+9);
             showsys= Integer.parseInt(str.substring(indext+13,indext+14));
             showback=Integer.parseInt(str.substring(indext+27,indext+28));
@@ -290,6 +292,7 @@ public class SkinActivity extends Activity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         updatePlayerViewMode();
+
     }
 
 
